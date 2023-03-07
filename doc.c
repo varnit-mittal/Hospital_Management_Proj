@@ -8,7 +8,7 @@ char *view_prof2(char profile[]);
 void booking(FILE *fp,FILE *f1,char name[]);
 void admit_patient();
 void update_patient();
-void add_medic(char str[]);
+void add_medic(char str[]);                //These are the files that are offered over here
 int count_med(char name[]);
 
 void doc(char name[])
@@ -20,7 +20,7 @@ void doc(char name[])
     while(b)
     {
         printf("\n");
-        printf("Press 1 to view your profile\n");
+        printf("Press 1 to view your profile\n");           //the things that are offered 
         printf("Press 2 to view booking requests\n");
         printf("Press 3 to view update a patient's status\n");
         printf("Press 4 to admit a patient\n");
@@ -32,7 +32,7 @@ void doc(char name[])
         switch(d)
         {
             case 1:
-            {
+            {                                          //for viewing the patient's profile
                 FILE *f1;
                 char *cdoc=malloc(sizeof(char)*300);
                 char *c2=malloc(sizeof(char)*200);
@@ -42,34 +42,34 @@ void doc(char name[])
             }
             case 2:
             {
-                FILE *f2,*f3;
+                FILE *f2,*f3;            //to do a booking request
                 booking(f2,f3,name);
                 break;
             }
             case 3:
-            {
+            {                          //for updating the patient's statistics
                 update_patient();
                 break;
-            }
-            case 4:
+            } 
+            case 4:                    //to admit a patient
             {
                 admit_patient();
                 break;
             }
             case 5:
-            {
+            {                            //For prescribing the medicines to the patient
                 char *med=malloc(sizeof(char)*300);
                 add_medic(med);
                 break;
             }
             case 6:
             {
-                printf("You are exiting...\n");
+                printf("You are exiting...\n");       //for exiting the applicaiton
                 break;
             }
             
         }
-        if(d==6)
+        if(d==6)       //ending of the loop
         break;
     }
 }                      
@@ -78,7 +78,7 @@ void admit_patient(){
     printf("Enter 1 to admit the patient in ICCU\n");
     printf("Enter 2 to admit the patient in Emergency\n");
     printf("Enter 3 to admit the patient in Ward\n");
-    int pat_admit_choice;
+    int pat_admit_choice;                          //we are offering the admission in ICU EMERGENCY AND other wards
     scanf("%d",&pat_admit_choice);
     char type[15];
     char filename[30];
@@ -111,7 +111,7 @@ void admit_patient(){
     scanf("%s", data[0]);
     fprintf(fward,"%s","\n");
     fprintf(fward,"%s %s $\n$",data[0],type);
-    printf("Enter patient's %s Ward Number: ", type);
+    printf("Enter patient's %s Ward Number: ", type);       //entering the patients details 
     scanf("%s", data[1]);
     printf("Enter patient's %s Bed Number: ", type);
     scanf("%s", data[2]);
@@ -138,7 +138,7 @@ void update_patient()
 {
     char *patient=malloc(100*sizeof(char));
     printf("Enter patient's Name: ");
-    scanf("%s",patient);
+    scanf("%s",patient);            //for updating the patient's info
     // for(int i=0;i<15;i++)
         // printf("%d ",patient[i]);
     FILE *ff=fopen("pat_ward.txt","r+");
@@ -173,7 +173,7 @@ void update_patient()
                     }
                 }
             }
-            if(strcmp(c,patient)==0)
+            if(strcmp(c,patient)==0)                    //if the detail's dont match then this message will be displayed
             break;
             if(strcmp(temp,"$")==0)
             {
@@ -217,7 +217,7 @@ void update_patient()
         FILE *fcurr_info;
         if (strcmp(curr_ward,"iccu")==0)
         {
-            fcurr_ward=fopen("iccu_in_out.txt","r+");
+            fcurr_ward=fopen("iccu_in_out.txt","r+");         //for entering the ICCU detials
             fcurr_info=fopen("iccu_info.txt","r+");
         }
         else if (strcmp(curr_ward,"emergency")==0)
@@ -280,7 +280,7 @@ void update_patient()
                 printf("--NO Data Found--\n");
                 f=-1;
                 break;
-                }
+                }            //in case if no data is found
             }while(c1[0]!= EOF);
             rewind(ff);
             char *c2=malloc(sizeof(char)*300);
@@ -331,7 +331,7 @@ void update_patient()
                 {
                     fscanf(fcurr_ward,"%s",temp2);
                 }
-                fscanf(fcurr_ward,"%s",temp2);
+                fscanf(fcurr_ward,"%s",temp2);                   //disclosure the patient's details
                 fprintf(fcurr_ward," %s",date);
                 fseek(ff,0,SEEK_SET);
                 del(fcurr_info,c1);
@@ -350,7 +350,7 @@ void update_patient()
                     scanf("%s",date);
                     char *temp2=malloc(100*sizeof(char));
                     fscanf(fcurr_ward,"%s",temp2);
-                    while (strcmp(temp2,patient)!=0)
+                    while (strcmp(temp2,patient)!=0)          //for going to the previous wards
                     {
                         fscanf(fcurr_ward,"%s",temp2);
                     }
@@ -429,7 +429,7 @@ char *view_prof2(char profile[])
     printf("Name: %s\n",str[0]);
     printf("D.O.B: %s\n",str[1]);
     printf("Age: %s\n",str[2]);
-    printf("Gender: %s\n",str[3]);
+    printf("Gender: %s\n",str[3]);         //entering the details
     printf("Contact details: \n");
     printf("%s\n",str[4]);
     printf("%s\n",str[5]);
@@ -441,7 +441,7 @@ char *view_prof2(char profile[])
 void booking(FILE *fp,FILE *f1,char name[])
 {
     fp= fopen("new_book.txt","r");
-    f1= fopen("booking_data.txt","r+");
+    f1= fopen("booking_data.txt","r+");    //reading into the new files
     char *book=malloc(sizeof(char)*300);
     char *nb=malloc(sizeof(char)*300);
     if(fp!=NULL)
@@ -498,7 +498,7 @@ void booking(FILE *fp,FILE *f1,char name[])
             elements[i]='\0';
             data_elements[k]=malloc(sizeof(char)*410);
             data_elements[k]=elements;
-            k++;
+            k++;                 
             i=0;
             elements=malloc(sizeof(char)*400);
             j++;
@@ -507,7 +507,7 @@ void booking(FILE *fp,FILE *f1,char name[])
     if(strcmp(book,"$")!=0)
     {
         printf("Booking request found..\n");
-        char *ans=malloc(sizeof(char)*10);
+        char *ans=malloc(sizeof(char)*10);             //for making a booking request
         printf("Do you want to accept request/s.. (yes/no)...\n");
         scanf("%s",ans);
         FILE *ff;
@@ -520,7 +520,7 @@ void booking(FILE *fp,FILE *f1,char name[])
         strcat(nb,data_elements[1]);
         strcat(nb," ");
         strcat(nb,cspec);
-        strcat(nb," ");
+        strcat(nb," ");            //concatenating string and a blank space
         strcat(nb,data_elements[2]);
         strcat(nb," ");
         strcat(nb,data_elements[3]);
@@ -533,7 +533,7 @@ void booking(FILE *fp,FILE *f1,char name[])
     }
     else
     {
-        printf("No booking request found..\n");
+        printf("No booking request found..\n");    //incase if booking details not found
     }
 }
 void add_medic(char str[])
@@ -565,7 +565,7 @@ void add_medic(char str[])
 
 int count_med(char name[])
 {
-    FILE *fp=fopen("medications_data.txt","r+");
+    FILE *fp=fopen("medications_data.txt","r+");      //reading the medication's file
     char *book=malloc(sizeof(char)*300);
 
     if(fp!=NULL)
@@ -622,12 +622,12 @@ int count_med(char name[])
             c[i]='\0';
             str[k]=malloc(sizeof(char)*410);
             str[k]=c;
-            k++;
+            k++;                    //ending the code and ending the doctor's access
             i=0;
             c=malloc(sizeof(char)*400);
             j++;
         }
     }
-    k=k-2;
+    k=k-1;
     return k;
 }

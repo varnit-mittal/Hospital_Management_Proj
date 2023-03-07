@@ -78,6 +78,7 @@ void pat_exist_user()       //this gives the patinet details
         char *str1=malloc(sizeof(char)*200);
         str1=str[2];
         patient(str1);
+        system("clear");
         break;
       }
       else

@@ -53,6 +53,7 @@ void doc_new_user()
             printf("Matched..\n");
             fseek(f2,EOF,SEEK_END);             
             fprintf(f2,"\n%s %s %s $",usrn,pswd1,ppl.name);
+            system("clear");
             break;
         }
         else

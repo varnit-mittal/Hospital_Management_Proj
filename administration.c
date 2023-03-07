@@ -38,7 +38,10 @@ void pharmacy(FILE *pha, char pharmacys[], char name[]) //global scanning throug
             if(strcmp(c,name)==0)
             break;
             if(strcmp(pharmacys,"$")==0) //we have added this as a customary sign to end our inputs with a $ sign
-            break;
+            {
+                printf("Medicine-Not-Found-In-Stock..\n");
+                break;
+            }
         }while(pharmacys[0]!= EOF); //condition to check the end of file
     }
 }
@@ -72,7 +75,7 @@ void view_pharma(char pharm[]) //breaking a string into words using spaces and e
     printf("Name of Medicine: %s\n",str[0]);
     printf("Company: %s\n",str[1]);
     printf("Stock Available: %s\n",str[2]);
-    printf("Price: %s\n",str[4]);
+    printf("Price: %s\n",str[3]);
 }
 void view_billing(char name[])
 {
@@ -487,10 +490,10 @@ void iccu_management(FILE *ifu){
                 }
             }
         printf("Patient is %s\n",patient);
-        printf("Ward Number :%s\n",str[0]);     //this gives the details of the patient if we choose him
-        printf("Bed Number  :%s\n",str[1]);
-        printf("Disease is  :%s\n",str[2]);
-        printf("Doctor Assigned is  :%s\n",str[3]); 
+        printf("Ward Number :%s\n",str[1]);     //this gives the details of the patient if we choose him
+        printf("Bed Number  :%s\n",str[2]);
+        printf("Disease is  :%s\n",str[3]);
+        printf("Doctor Assigned is  :%s\n",str[4]); 
     }
     char n;
     printf("Do you want to know the usage statistics (y/n) : ");
@@ -593,10 +596,10 @@ void emergency_info(FILE * ieu){
                 }
             }
         printf("Patient  :%s\n",patient);
-        printf("Ward Number :%s\n",str[0]);
-        printf("Bed Number : %s\n",str[1]);        //displays the data 
-        printf("Emergency is  :%s\n",str[2]);
-        printf("Doctor Assigned  :%s\n",str[3]); 
+        printf("Ward Number :%s\n",str[1]);
+        printf("Bed Number : %s\n",str[2]);        //displays the data 
+        printf("Emergency is  :%s\n",str[3]);
+        printf("Doctor Assigned  :%s\n",str[4]); 
     }
     char n;
     printf("Do you want to know the usage statistics (y/n) : ");
@@ -718,7 +721,8 @@ void admin(char name[])
                 printf("************ Welcome to Ashadeep's Pharmacy *************\n");
                 printf("Enter the medicine name to see the details of the medicine in the stock: ");
                 scanf("%s",str1);
-                pharmacy(f1,str2,str1);        //displays the pharmacy the stocks and details of the medicine
+                pharmacy(f1,str2,str1);      //displays the pharmacy the stocks and details of the medicine
+                if(strcmp(str2,"$")!=0)
                 view_pharma(str2);
                 break;
             }

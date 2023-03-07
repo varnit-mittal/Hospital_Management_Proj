@@ -50,6 +50,7 @@ void pat_new_user()
             printf("Matched..\n");          //if the password matches then 
             fseek(f2,EOF,SEEK_END);
             fprintf(f2,"\n%s %s %s $",usrn,pswd1,ppl.name);   //this will fetch the details
+            system("clear");
             break;
         }
         else

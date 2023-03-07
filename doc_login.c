@@ -78,6 +78,7 @@ void doc_exist_user()
         char *str1=malloc(sizeof(char)*200);
         str1=str[2];
         doc(str1);
+        system("clear");
         break;
       }
       else
