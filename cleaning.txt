@@ -1,0 +1,7 @@
+Hemang 04/11/2004 18 M Bathroom_cleaner 8817972743 hemang@gmail.com Indore $
+Hemant 31/03/2004 18 M Ward_cleaner 9319356183 hemant@gmail.com  Burari $
+Tanish 11/06/2004 18 M Sewage_cleaner 7973787028 tanish@gmail.com Chandigarh $
+Shriya 04/07/1990 33 F Pharmacy_cleaner 7658495674 shriya@gmail.com Hyderabad $
+Ragini  15/08/2000 22 F Pantry_staff 4567380091 ragini@gmail.com Telengana $
+Soma 23/05/2003 19 M Water_cleaning_staff 1007685436 soma@gmail.com Telengana $
+$
