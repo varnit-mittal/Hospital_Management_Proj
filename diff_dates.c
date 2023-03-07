@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "utils.h"
-struct date {
-    int day;
-    int month;
-    int year;             //This creates a structure consisting of day month and years
-};
+// struct date {
+//     int day;
+//     int month;
+//     int year;             //This creates a structure consisting of day month and years
+// };
 
 int isLeapYear(int year) {
     if (year % 4 != 0) {                //this function is to check whether a given year is a leap year or not

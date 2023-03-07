@@ -39,7 +39,10 @@ void patient(char name[])
             {
                 char *medic= malloc(sizeof(char)*300);
                 medic=medications(f,name);         //This is to view the medication's files
+                if(strcmp(medic,"$")!=0)
+                {
                 view_medic(medic);
+                }
                 break;
             }
             case 2:
@@ -323,6 +326,11 @@ char* medications(FILE *fin, char name[])           //global scanning
         }
         if(strcmp(c,name)==0)
         break;
+        if(strcmp(c1,"$")==0)
+        {
+            printf("No medications found...\n");
+            break;
+        }
     }while(c1[0]!=EOF);
 
     return c1;

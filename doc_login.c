@@ -77,7 +77,7 @@ void doc_exist_user()
         printf("Successful Login..\n");                //this comapres with the successfull login attempts
         char *str1=malloc(sizeof(char)*200);
         str1=str[2];
-        //doctor(str1);
+        doc(str1);
         break;
       }
       else

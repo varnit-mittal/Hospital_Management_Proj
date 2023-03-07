@@ -8,6 +8,8 @@ char *view_prof2(char profile[]);
 void booking(FILE *fp,FILE *f1,char name[]);
 void admit_patient();
 void update_patient();
+void add_medic(char str[]);
+int count_med(char name[]);
 
 void doc(char name[])
 {
@@ -23,6 +25,7 @@ void doc(char name[])
         printf("Press 3 to view update a patient's status\n");
         printf("Press 4 to admit a patient\n");
         printf("Press 5 to prescribe medicine to a patient\n");
+        printf("Press 6 to exit the portal\n");
         printf("Enter your input: ");
         int d;
         scanf("%d",&d);
@@ -53,8 +56,21 @@ void doc(char name[])
                 admit_patient();
                 break;
             }
+            case 5:
+            {
+                char *med=malloc(sizeof(char)*300);
+                add_medic(med);
+                break;
+            }
+            case 6:
+            {
+                printf("You are exiting...\n");
+                break;
+            }
             
         }
+        if(d==6)
+        break;
     }
 }                      
 
@@ -351,7 +367,7 @@ void update_patient()
 
 void prof2(FILE *f,char name[], char c1[])
 {
-    f=fopen("pat_data.txt","r");
+    f=fopen("doc_data.txt","r");
     do
     {
         fgets(c1,200,f);
@@ -492,7 +508,7 @@ void booking(FILE *fp,FILE *f1,char name[])
     {
         printf("Booking request found..\n");
         char *ans=malloc(sizeof(char)*10);
-        printf("Do you want to accept this request.. \n");
+        printf("Do you want to accept request/s.. (yes/no)...\n");
         scanf("%s",ans);
         FILE *ff;
         char *cdoc=malloc(sizeof(char)*300);
@@ -528,11 +544,12 @@ void add_medic(char str[])
     scanf("%s",pat);
     strcpy(str,pat);
     strcat(str," ");
+    printf("Enter the medicine you want to prescribe to the patient\n");
+    printf("Type EXIT to stop entering the medicine\n");
     while(1)
     {
         char *med=malloc(sizeof(char)*200);
-        printf("Enter the medicine you want to prescribe to the patient\n");
-        printf("Type EXIT to stop entering the medicine\n");
+        
         scanf("%s",med);
         if(strcmp(med,"EXIT")!=0)
         {
@@ -546,7 +563,71 @@ void add_medic(char str[])
     fprintf(f1,"\n%s\n$",str);
 }
 
-void count_med(char str[])
+int count_med(char name[])
 {
-    
+    FILE *fp=fopen("medications_data.txt","r+");
+    char *book=malloc(sizeof(char)*300);
+
+    if(fp!=NULL)
+    {
+        do
+        {
+            fgets(book,200,fp);
+            int i=0,j=0;
+            char *c;
+            c= malloc(sizeof(char)*400);
+            while(book[j]!='\0')
+            {
+                if(book[j]!=' ')
+                {
+                    c[i]=book[j];
+                    i++;
+                    j++;
+                }
+                if(book[j]==' ')
+                {
+                    if(strcmp(c,name)==0)
+                    break;
+                    else
+                    {
+                        c= malloc(sizeof(char)*400);
+                        i=0;
+                        j++;
+                    }
+                }
+            }
+            if(strcmp(c,name)==0)
+            break;
+            if(strcmp(book,"$")==0)
+            break;
+        }while(book[0]!= EOF);
+    }
+
+    int j=0;
+    char *str[20];
+    char *c;
+    c=malloc(sizeof(char)*400);
+    int i=0;
+    int k=0;
+    while(book[j]!='\0')
+    {
+        if(book[j]!=' ')
+        {
+            c[i]=book[j];
+            i++;
+            j++;
+        }
+        else
+        {
+            c[i]='\0';
+            str[k]=malloc(sizeof(char)*410);
+            str[k]=c;
+            k++;
+            i=0;
+            c=malloc(sizeof(char)*400);
+            j++;
+        }
+    }
+    k=k-2;
+    return k;
 }

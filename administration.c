@@ -1,8 +1,9 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include "utils.h"
 
-
+void view_billing(char name[]);
 void pharmacy(FILE *pha, char pharmacys[], char name[]) //global scanning through a file 
 {
     pha=fopen("pharmacy.txt","r");
@@ -73,112 +74,9 @@ void view_pharma(char pharm[]) //breaking a string into words using spaces and e
     printf("Stock Available: %s\n",str[2]);
     printf("Price: %s\n",str[4]);
 }
-char * billing(FILE *bill,char name[])
-
+void view_billing(char name[])
 {
-    bill=fopen("billing.txt","r");
-    char *c1=malloc(sizeof(char)*400); //pointing to the billing.txt file stored
-    do
-    {
-        fgets(c1,400,bill);
-        int i=0,j=0;
-        char *c;
-        c= malloc(sizeof(char)*400); //c is used for comparing the data where the patients data is stored
-        while(c1[j]!='\0')
-        {
-            if(c1[j]!=' ')
-            {
-                c[i]=c1[j];
-                i++;       //stroing the individual characters into c is found 
-                j++;
-            }
-            if(c1[j]==' ')
-            {
-                if(strcmp(c,name)==0) //if this condition is not satisfied then it will break the while loop
-                break;
-                else
-                {
-                    c= malloc(sizeof(char)*400);
-                    i=0;                        //this is for storing the values in the string
-                    j++;
-                }
-            }
-        }
-        if(strcmp(c,name)==0)
-        break;
-    }while(c1[0]!=EOF);
-
-    return c1;        //returning the final character pointer array to the file
-}
-typedef struct bill_patient{
-    int ward;
-    int iccu;
-    int emergency;
-    int food;              //defining the different integers for the separte bills
-    int pharma;            //typedef for giving a common name to the billing structure
-    int time_iccu;
-    int time_emergency;
-    int time_ward;  
-}bill_patient;
-
-void view_billing(char bill[]){   
-     int j=0;
-    char *bill_elements[20]; //storing them in a bill which contains the name
-    char *elements;          // a character pointer pointing to the bills
-	elements=malloc(sizeof(char)*400);
-    int i=0;
-    int k=0;
-    while(bill[j]!='\0')
-    {
-        if(bill[j]!=' ')
-        {
-            elements[i]=bill[j];
-            i++;                        //storing them till an empty space is found
-            j++;
-        }
-        else
-        {
-        	elements[i]='\0';
-            bill_elements[k]=malloc(sizeof(char)*410);
-            bill_elements[k]=elements;
-            k++;
-            i=0;                 //defining a dynamically stored array which stores the elements in it
-            elements=malloc(sizeof(char)*400);
-            j++;
-        }
-    }
-    bill_patient b;
-    b.ward=atoi(bill_elements[1]);          //atoi converts from string of numbers to integer to be used for the billing procedures
-    b.time_ward=atoi(bill_elements[2]); 
-    b.emergency=atoi(bill_elements[3]);
-    b.time_emergency=atoi(bill_elements[4]);
-    b.iccu=atoi(bill_elements[5]);
-    b.time_iccu=atoi(bill_elements[6]);
-    b.pharma=0;
-    // b.pharma=atoi(bill_elements[7]);             
-    int total_time=b.time_iccu+b.time_emergency+b.time_ward;
-    b.food = 100*total_time;
-    int total_price = b.emergency+b.food+b.iccu+b.ward+b.pharma;
-    printf("----------------------------------------------------------------");
-    printf("Name : %s",bill_elements[0]);
-    if(b.emergency ==0)
-        printf("Emergency - %d",0);   //emergency procedural billing
-    else
-        printf("Emergency - %d days @ %d = %d ",b.time_emergency,(b.emergency/b.time_emergency),b.emergency);
-    if (b.iccu==0)
-        printf("ICCU : %d",0);
-    else
-        printf("ICCU - %d days @ %d = %d ",b.time_iccu,(b.iccu/b.time_iccu),b.iccu);
-    if (b.ward==0)
-        printf("General Ward - %d",0);
-    else
-        printf("General Ward - %d days @ %d = %d ",b.time_ward,(b.ward/b.time_ward),b.ward);
-    printf("Pharma - @ %d/dose for %d medicines for %d days = %d",25,b.pharma/(total_time*25),total_time,b.pharma);  //calling out the individual values
-    printf("Food - %d days @ %d = %d ",total_time,(b.food/total_time),b.food);
-    printf("Total price = %d",total_price);
-    printf("After Tax (%d)%% = %.2f",18,total_price*1.18);
-    //this prints the total bill note that we have considered an 18% tax rate for all our billing procedures
-    printf("----------------------------------------------------------------");
+    billing_calc(name);
 }
 
 void doc_read(FILE *fp,char doc[],char doc_name[])
@@ -836,8 +734,7 @@ void admin(char name[])
                 printf("******************* This is Ashadeep's Billing Management System ***************************\n");
                 printf("Enter the patient's name and view the billing:\n");
                 scanf("%s",str1);        
-                str2=billing(f3,str1);      // viewing the bills for it 
-                view_billing(str2);             //fetching the details that we had previously made
+                view_billing(str1);             //fetching the details that we had previously made
                 break;
             }
             case 4:
