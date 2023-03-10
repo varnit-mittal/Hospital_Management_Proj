@@ -430,12 +430,12 @@ char *view_prof2(char profile[])
     printf("D.O.B: %s\n",str[1]);
     printf("Age: %s\n",str[2]);
     printf("Gender: %s\n",str[3]);         //entering the details
+    printf("Specialization: %s\n",str[4]);
     printf("Contact details: \n");
-    printf("%s\n",str[4]);
     printf("%s\n",str[5]);
-    printf("Address: %s\n",str[6]);
-    printf("Specialization: %s\n",str[7]);
-    return str[7];
+    printf("%s\n",str[6]);
+    printf("Address: %s\n",str[7]);
+    return str[4];
 }
 
 void booking(FILE *fp,FILE *f1,char name[])
