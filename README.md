@@ -87,6 +87,7 @@ after cloning all the files from the github, the user that wants to start the pr
 ## Contact
 
 Varnit Mittal - https://github.com/varnit-mittal
+Aditya Priyadarshi - https://github.com/ap5967ap
 
 
 
