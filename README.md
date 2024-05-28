@@ -77,7 +77,7 @@ On starting the project, A sign up portal is shot up, and the user have to sign 
 
 ## Usage
 
-after cloning all the files from the github, the user that wants to start the project can just do it by writing in the terminal the following two commands <br>
+After cloning all the files from the github, the user that wants to start the project can just do it by writing in the terminal the following two commands <br>
 1. Make final
 2. ./hsp.out
 
